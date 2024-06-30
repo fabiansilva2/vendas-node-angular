@@ -1,0 +1,77 @@
+/* Estilo geral para o corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Estilo do container da tabela */
+  table {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto; 
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Estilo dos cabeçalhos da tabela */
+  th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  /* Estilo das células da tabela */
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #cccccc;
+    text-align: left;
+  }
+  
+  /* Estilo das linhas alternadas da tabela */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilo dos títulos */
+  h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para melhorar o layout responsivo */
+  @media (max-width: 600px) {
+    table, th, td {
+      display: block;
+      width: 100%;
+    }
+    th {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    td {
+      position: relative;
+      padding-left: 50%;
+      text-align: left;
+    }
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: calc(50% - 20px);
+      white-space: nowrap;
+      font-weight: bold;
+    }
+  }
+  

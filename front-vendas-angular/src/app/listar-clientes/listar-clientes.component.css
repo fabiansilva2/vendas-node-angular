@@ -1,0 +1,64 @@
+/* Estilo geral para o corpo */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Container da lista */
+ul {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px; /* Largura máxima para o container */
+  list-style-type: none;
+  margin: 20px auto; /* Centraliza a lista na tela */
+  padding: 0;
+}
+
+/* Estilo dos títulos */
+h2 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Estilo dos itens da lista */
+li {
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo do texto dos itens */
+li span {
+  display: block;
+  width: 24%;
+  text-align: center;
+  font-weight: bold;
+  color: #555555;
+}
+
+/* Estilo para melhorar o layout responsivo */
+@media (max-width: 600px) {
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  li span {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+}
