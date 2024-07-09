@@ -9,13 +9,24 @@ exports.listarProdutos = async (_req, res) => {
     }
 };
 
+exports.obterProdutoPorId = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const produto = await Produto.findByPk(id);
+        if (produto) {
+            res.json(produto);
+        } else {
+            res.status(404).json({ message: 'Produto não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 exports.adicionarProduto = async (req, res) => {
     try {
-        const { nome, email, telefone } = req.body;
-        if (!nome || !email || !telefone) {
-            return res.status(400).json({ message: 'Nome, email e telefone são obrigatórios' });
-        }
-        const novoProduto = await Produto.create({ nome, email, telefone });
+        const { nome, preco, estoque } = req.body;
+        const novoProduto = await Produto.create({ nome, preco, estoque });
         res.status(201).json(novoProduto);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -25,16 +36,17 @@ exports.adicionarProduto = async (req, res) => {
 exports.atualizarProduto = async (req, res) => {
     try {
         const { id } = req.params;
-        const { nome, email, telefone } = req.body;
+        const { nome, preco, estoque } = req.body;
         const produto = await Produto.findByPk(id);
-        if (!produto) {
-            return res.status(404).json({ message: 'Produto não encontrado' });
+        if (produto) {
+            produto.nome = nome;
+            produto.preco = preco;
+            produto.estoque = estoque;
+            await produto.save();
+            res.json(produto);
+        } else {
+            res.status(404).json({ error: 'Produto não encontrado' });
         }
-        produto.nome = nome;
-        produto.email = email;
-        produto.telefone = telefone;
-        await produto.save();
-        res.json(produto);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -11,20 +11,77 @@ exports.listarPedidos = async (_req, res) => {
     }
 };
 
+exports.obterPedidoPorId = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const pedido = await Pedido.findByPk(id);
+        if (pedido) {
+            res.json(pedido);
+        } else {
+            res.status(404).json({ message: 'Pedido não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 // Adicionar um novo pedido
 exports.adicionarPedido = async (req, res) => {
+    try {
+        const { clienteId, produtoId, quantidade } = req.body;
+
+        // Verificar se o cliente existe
+        let clienteResponse;
+        try {
+            clienteResponse = await axios.get(`http://localhost:3000/api/cliente/${clienteId}`);
+        } catch (error) {
+            console.error('Erro ao verificar cliente:', error.message);
+            return res.status(404).json({ message: 'Cliente não encontrado' });
+        }
+
+        if (!clienteResponse.data) {
+            return res.status(404).json({ message: 'Cliente não encontrado' });
+        }
+
+        // Verificar se o produto existe
+        let produtoResponse;
+        try {
+            produtoResponse = await axios.get(`http://localhost:3000/api/produto/${produtoId}`);
+        } catch (error) {
+            console.error('Erro ao verificar produto:', error.message);
+            return res.status(404).json({ message: 'Produto não encontrado' });
+        }
+
+        if (!produtoResponse.data) {
+            return res.status(404).json({ message: 'Produto não encontrado' });
+        }
+
+        // Calcular o total
+        const total = quantidade * produtoResponse.data.preco;
+
+        // Criar o pedido
+        const novoPedido = await Pedido.create({ clienteId, produtoId, quantidade, total });
+
+        res.status(201).json(novoPedido);
+    } catch (error) {
+        console.error('Erro ao adicionar pedido:', error.message);
+        res.status(500).json({ error: error.message });
+    }
+};
+
+/* exports.adicionarPedido = async (req, res) => {
     try {
         const { clienteId, produtos, data, status } = req.body;
 
         // Verificar se o cliente existe
-        const clienteResponse = await axios.get(`http://localhost:3002/api/clientes/${clienteId}`);
+        const clienteResponse = await axios.get(`http://localhost:3000/api/clientes/${clienteId}`);
         if (!clienteResponse.data) {
             return res.status(404).json({ message: 'Cliente não encontrado' });
         }
 
         // Verificar se os produtos existem
         for (const produtoId of produtos) {
-            const produtoResponse = await axios.get(`http://localhost:3004/api/produtos/${produtoId}`);
+            const produtoResponse = await axios.get(`http://localhost:3000/api/produtos/${produtoId}`);
             if (!produtoResponse.data) {
                 return res.status(404).json({ message: `Produto com ID ${produtoId} não encontrado` });
             }
@@ -36,7 +93,7 @@ exports.adicionarPedido = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
+}; */
 
 // Atualizar um pedido
 exports.atualizarPedido = async (req, res) => {
@@ -49,14 +106,14 @@ exports.atualizarPedido = async (req, res) => {
         }
 
         // Verificar se o cliente existe
-        const clienteResponse = await axios.get(`http://localhost:3002/api/clientes/${clienteId}`);
+        const clienteResponse = await axios.get(`http://localhost:3000/api/clientes/${clienteId}`);
         if (!clienteResponse.data) {
             return res.status(404).json({ message: 'Cliente não encontrado' });
         }
 
         // Verificar se os produtos existem
         for (const produtoId of produtos) {
-            const produtoResponse = await axios.get(`http://localhost:3004/api/produtos/${produtoId}`);
+            const produtoResponse = await axios.get(`http://localhost:3000/api/produtos/${produtoId}`);
             if (!produtoResponse.data) {
                 return res.status(404).json({ message: `Produto com ID ${produtoId} não encontrado` });
             }

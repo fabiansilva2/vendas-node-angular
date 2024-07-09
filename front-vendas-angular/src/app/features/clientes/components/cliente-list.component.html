@@ -1,0 +1,9 @@
+<h2>Clientes</h2>
+<ul>
+  <li *ngFor="let cliente of clientes">
+    <div><strong>Nome:</strong> {{ cliente.nome }}</div>
+    <div><strong>Email:</strong> {{ cliente.email }}</div>
+    <div><strong>Telefone:</strong> {{ cliente.telefone }}</div>
+    <div><strong>Endereço:</strong> {{ cliente.endereco }}</div>
+  </li>
+</ul>

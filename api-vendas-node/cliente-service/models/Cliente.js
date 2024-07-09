@@ -19,7 +19,13 @@ const Cliente = sequelize.define('Cliente', {
     telefone: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+
+    endereco: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
+
 }, {
     tableName: 'clientes',
     timestamps: false

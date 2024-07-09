@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
         const isMatch = bcrypt.compareSync(password, usuario.password);
         if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-        const token = jwt.sign({ id: usuario.id, username: usuario.username }, 'secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ id: usuario.id, username: usuario.username }, 'secret_key', { expiresIn: '2h' });
         res.json({ token });
     } catch (error) {
         res.status(500).json({ message: error.message });

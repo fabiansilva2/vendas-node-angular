@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClienteComponent } from './cliente/cliente.component';
-import { ItemVendaComponent } from './item-venda/item-venda.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
-import { ListarItensVendaComponent } from './listar-itens-venda/listar-itens-venda.component';
-import { ListarPedidosComponent } from './listar-pedidos/listar-pedidos.component';
+import { ClienteListComponent } from './features/clientes/components/cliente-list.component';
+import { ProdutoListComponent } from './features/produtos/components/produto-list.component';
+import { PedidoListComponent } from './features/pedidos/components/pedido-list.component';
+import { LoginComponent } from './features/auth/components/login.component';
 
 const routes: Routes = [
-  { path: 'cliente', component: ClienteComponent },
-  { path: 'item-venda', component: ItemVendaComponent },
-  { path: 'pedido', component: PedidoComponent },
-  { path: 'listar-clientes', component: ListarClientesComponent },
-  { path: 'listar-item-venda', component: ListarItensVendaComponent },
-  { path: 'listar-pedidos', component: ListarPedidosComponent },
-  { path: '', redirectTo: '/listar-clientes', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent },
+  { path: 'clientes', component: ClienteListComponent },
+  { path: 'produtos', component: ProdutoListComponent },
+  { path: 'pedidos', component: PedidoListComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -22,3 +18,24 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+/* import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ClienteListComponent } from './features/clientes/components/cliente-list.component';
+import { ProdutoListComponent } from './features/produtos/components/produto-list.component';
+import { PedidoListComponent } from './features/pedidos/components/pedido-list.component';
+
+const routes: Routes = [
+  { path: 'clientes', component: ClienteListComponent },
+  { path: 'produtos', component: ProdutoListComponent },
+  { path: 'pedidos', component: PedidoListComponent },
+  { path: '', redirectTo: '/clientes', pathMatch: 'full' }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+ */

@@ -6,6 +6,8 @@ const authMiddleware = require('../middlewares/authMiddleware');
 // Rota para listar clientes
 router.get('/clientes', authMiddleware, clienteController.listarClientes);
 
+router.get('/cliente/:id', clienteController.obterClientePorId);
+
 // Rota para adicionar cliente
 router.post('/cliente', authMiddleware, clienteController.adicionarCliente);
 

@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "7f6dd537-a97f-47fc-b6b3-85bb9b53e445"
+    "analytics": "7615db4b-fe43-4bb4-acf9-d4468601b253"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "front-angular": {
+    "front-vendas-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/front-angular",
+            "outputPath": "dist/front-vendas-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,7 +30,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -72,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "front-angular:build:production"
+              "browserTarget": "front-vendas-angular:build:production"
             },
             "development": {
-              "browserTarget": "front-angular:build:development"
+              "browserTarget": "front-vendas-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "front-angular:build"
+            "browserTarget": "front-vendas-angular:build"
           }
         },
         "test": {
@@ -98,7 +97,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -107,5 +105,5 @@
       }
     }
   },
-  "defaultProject": "front-angular"
+  "defaultProject": "front-vendas-angular"
 }

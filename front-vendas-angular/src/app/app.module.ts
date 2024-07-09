@@ -2,33 +2,26 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { ClienteModule } from './features/clientes/clientes.module';
+import { ProdutoModule } from './features/produtos/produtos.module';
+import { PedidoModule } from './features/pedidos/pedidos.module';
+import { AuthModule } from './features/auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
-import { ClienteComponent } from './cliente/cliente.component';
-import { ItemVendaComponent } from './item-venda/item-venda.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
-import { ListarItensVendaComponent } from './listar-itens-venda/listar-itens-venda.component';
-import { ListarPedidosComponent } from './listar-pedidos/listar-pedidos.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ClienteComponent,
-    ItemVendaComponent,
-    PedidoComponent,
-    ListarClientesComponent,
-    ListarItensVendaComponent,
-    ListarPedidosComponent,
-    ClienteComponent,
-    
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    CoreModule,
+    ClienteModule,
+    ProdutoModule,
+    PedidoModule,
+    AuthModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
