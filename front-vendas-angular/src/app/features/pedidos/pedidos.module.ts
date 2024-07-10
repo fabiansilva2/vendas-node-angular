@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PedidoListComponent } from './components/pedido-list.component';
+import { PedidoListComponent } from './components/pedido-list/pedido-list.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

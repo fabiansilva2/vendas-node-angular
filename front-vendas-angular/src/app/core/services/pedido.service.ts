@@ -7,27 +7,28 @@ import { Pedido } from '../models/pedido.model';
   providedIn: 'root'
 })
 export class PedidoService {
-  private apiUrl = 'http://localhost:3000/api/pedidos';
+  private apiUrlListar = 'http://localhost:3000/api/pedidos';
+  private apiUrlAdicionar = 'http://localhost:3000/api/pedido';
 
   constructor(private http: HttpClient) {}
 
   getPedidos(): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(this.apiUrl);
+    return this.http.get<Pedido[]>(this.apiUrlListar);
   }
 
   getPedidoById(id: number): Observable<Pedido> {
-    return this.http.get<Pedido>(`${this.apiUrl}/${id}`);
+    return this.http.get<Pedido>(`${this.apiUrlListar}/${id}`);
   }
 
   createPedido(pedido: Pedido): Observable<Pedido> {
-    return this.http.post<Pedido>(this.apiUrl, pedido);
+    return this.http.post<Pedido>(this.apiUrlAdicionar, pedido);
   }
 
   updatePedido(id: number, pedido: Pedido): Observable<Pedido> {
-    return this.http.put<Pedido>(`${this.apiUrl}/${id}`, pedido);
+    return this.http.put<Pedido>(`${this.apiUrlListar}/${id}`, pedido);
   }
 
   deletePedido(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrlListar}/${id}`);
   }
 }

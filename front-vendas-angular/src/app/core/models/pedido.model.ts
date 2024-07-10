@@ -1,5 +1,5 @@
 export interface Pedido {
-  id: number;
+  id?: number;
   clienteId: number;
   produtoId: number;
   quantidade: number;
